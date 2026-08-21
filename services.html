@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nos services — Pressing Bidè</title>
+  <meta name="description" content="Découvrez tous les services de Pressing Bidè : lavage, séchage, repassage, pressing, nettoyage à sec et livraison.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bdy-navbar" id="bdy-navbar" aria-label="Navigation principale"></nav>
+
+  <!-- ================= ENTÊTE ================= -->
+
+  <header class="bg-pb-light border-bottom border-light-subtle">
+    <div class="container py-5">
+      <span class="bdy-eyebrow">Nos services et tarifs</span>
+      <h1 class="bdy-section-title mb-2">Toutes nos prestations de laverie</h1>
+      <p class="bdy-section-sub mb-0">Lavage, séchage, repassage, pressing, nettoyage à sec et livraison : un service pour chaque besoin.</p>
+    </div>
+  </header>
+
+  <!-- ================= CARTES SERVICES ================= -->
+
+  <section class="bdy-section">
+    <div class="container">
+      <div class="row g-4" id="services-grid">
+        <!-- Cartes injectées par JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TABLEAU TARIFAIRE ================= -->
+
+  <section class="bdy-section bg-white border-top border-bottom border-light-subtle">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="bdy-eyebrow">Tarifs indicatifs</span>
+        <h2 class="bdy-section-title">Grille tarifaire complète</h2>
+        <p class="bdy-section-sub mx-auto">Prix unitaires donnés à titre indicatif. <a href="pricing.html" class="text-pb fw-bold">Voir nos formules →</a></p>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bdy align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Prestation</th>
+              <th scope="col">Détail</th>
+              <th scope="col">Délai</th>
+              <th scope="col" class="text-end">Tarif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Lavage classique</strong></td><td>Lavage machine, séchage inclus</td><td>≈ 2 h</td><td class="text-end">2 500 FCFA / 5 kg</td></tr>
+            <tr><td><strong>Lavage premium</strong></td><td>Détachage, parfum, pliage soigné</td><td>≈ 3 h</td><td class="text-end">3 500 FCFA / 5 kg</td></tr>
+            <tr><td><strong>Séchage</strong></td><td>Sèche-linge professionnel</td><td>≈ 1 h</td><td class="text-end">1 500 FCFA / cycle</td></tr>
+            <tr><td><strong>Repassage</strong></td><td>Vapeur professionnelle, à la pièce</td><td>24 h</td><td class="text-end">1 000 FCFA / pièce</td></tr>
+            <tr><td><strong>Nettoyage à sec</strong></td><td>Costumes, robes, textiles fragiles</td><td>48 h</td><td class="text-end">4 000 FCFA / pièce</td></tr>
+            <tr><td><strong>Pressing express</strong></td><td>Pressing en 2 h chrono</td><td>2 h</td><td class="text-end">5 000 FCFA / pièce</td></tr>
+            <tr><td><strong>Collecte et livraison</strong></td><td>Service à domicile tout-en-un</td><td>Variable</td><td class="text-end">3 000 FCFA (suppl.)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small text-muted mt-3 mb-0"><i class="bi bi-info-circle me-1"></i>Tarifs indicatifs — consultez aussi nos <a href="pricing.html" class="text-pb">formules comparatives</a> pour des forfaits avantageux.</p>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+
+  <section class="bdy-section">
+    <div class="container">
+      <div class="bdy-cta p-5 text-center">
+        <h2 class="fw-bold mb-2">Un doute sur le bon service ?</h2>
+        <p class="mb-4 text-white-50">Contactez-nous, nous vous conseillons gratuitement sur le traitement adapté à vos textiles.</p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+          <a href="booking.html" class="btn btn-pb btn-lg"><i class="bi bi-calendar2-check me-2"></i>Réserver</a>
+          <a href="contact.html" class="btn btn-ghost-light btn-lg"><i class="bi bi-chat-dots me-2"></i>Nous contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bdy-footer" id="bdy-footer"></footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" style="z-index:1080;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/services-data.js"></script>    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.getElementById("services-grid");
+      if (!grid) return;
+      grid.innerHTML = PB_SERVICES.map(s => `
+        <div class="col-md-6 col-lg-4">
+          <div class="card card-hover h-100 ${s.popular ? 'border-2' : ''}" ${s.popular ? `style="border-color: var(--pb-accent) !important;"` : ''}>
+            <div class="card-body p-4">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <div class="bdy-icon-badge"><i class="bi ${s.icon}"></i></div>
+                ${s.popular ? '<span class="badge" style="background:var(--pb-accent);color:#fff;">Populaire</span>' : ''}
+              </div>
+              <h3 class="h6 fw-bold">${s.name}</h3>
+              <p class="text-muted small mb-3">${s.desc}</p>
+              <ul class="list-unstyled small mb-3">
+                ${s.features.map(f => `<li class="py-1"><i class="bi bi-check-circle-fill text-pb me-2"></i>${f}</li>`).join('')}
+              </ul>
+              <div class="d-flex align-items-baseline justify-content-between mb-3">
+                <p class="bdy-price mb-0">${new Intl.NumberFormat('fr-FR').format(s.price)} FCFA <small>${s.unit}</small></p>
+                <span class="text-muted small">${s.duration}</span>
+              </div>
+              <button class="btn btn-pb w-100 btn-add-cart" data-id="${s.id}">
+                <i class="bi bi-cart-plus me-2"></i>Ajouter au panier
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      // Gestion du panier
+      document.querySelectorAll('.btn-add-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const serviceId = btn.dataset.id;
+          const service = PB_SERVICES.find(s => s.id === serviceId);
+          if (!service) return;
+
+          const cart = JSON.parse(localStorage.getItem('pb_cart') || '[]');
+          cart.push({
+            serviceId: service.id,
+            serviceName: service.name,
+            price: service.price,
+            quantity: 1,
+            addedAt: Date.now()
+          });
+          localStorage.setItem('pb_cart', JSON.stringify(cart));
+
+          // Animation du bouton
+          btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Ajouté !';
+          btn.classList.remove('btn-pb');
+          btn.classList.add('btn-success');
+          btn.disabled = true;
+          setTimeout(() => {
+            btn.innerHTML = '<i class="bi bi-cart-plus me-2"></i>Ajouter au panier';
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-pb');
+            btn.disabled = false;
+          }, 2000);
+
+          // Toast
+          if (typeof pbToast === 'function') {
+            pbToast(service.name + ' ajouté au panier ! 🛒');
+          }
+
+          // Mettre à jour le compteur du panier dans la navbar
+          updateCartBadge();
+        });
+      });
+
+      function updateCartBadge() {
+        const cart = JSON.parse(localStorage.getItem('pb_cart') || '[]');
+        const badge = document.getElementById('cart-badge');
+        if (badge) {
+          badge.textContent = cart.length;
+          badge.classList.toggle('d-none', cart.length === 0);
+        }
+      }
+      updateCartBadge();
+    });
+  </script>
+</body>
+</html>
