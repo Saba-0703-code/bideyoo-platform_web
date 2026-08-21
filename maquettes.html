@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maquettes Bidéyoo — Cahier des charges</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <style>
+    @page { size: A4 landscape; margin: 15mm; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; background: #f0f0f0; color: #222; }
+    @media print { body { background: #fff; } .page-frame { box-shadow: none; border: 1px solid #ccc; } .no-print { display: none !important; } }
+
+    /* ---------- En-tête ---------- */
+    header { background: #fff; border-bottom: 3px solid #222; padding: 24px 40px; }
+    header h1 { font-size: 22px; }
+    header h1 span { font-weight: 400; color: #666; }
+    header p { color: #666; font-size: 13px; margin-top: 4px; }
+    .toolbar { background: #fff; padding: 10px 40px; border-bottom: 1px solid #ddd; font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+    .toolbar a { text-decoration: none; color: #333; font-weight: 600; padding: 3px 8px; border-radius: 4px; border: 1px solid #ddd; }
+    .toolbar a:hover { background: #e8f4f8; border-color: #999; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; background: #e8f4f8; color: #0e7490; }
+
+    /* ---------- Conteneur ---------- */
+    .container { max-width: 1280px; margin: 0 auto; padding: 30px 40px; }
+
+    /* ---------- Une maquette ---------- */
+    .maquette { margin-bottom: 50px; page-break-inside: avoid; }
+    .maquette-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; border-bottom: 2px solid #222; padding-bottom: 8px; }
+    .maquette-header h2 { font-size: 18px; }
+    .maquette-header .meta { font-size: 12px; color: #888; text-align: right; }
+    .maquette-body { display: flex; gap: 20px; }
+
+    /* ---------- Cadre page ---------- */
+    .page-frame { flex: 1; max-width: 720px; background: #fff; border: 2px solid #bbb; border-radius: 6px; overflow: hidden; }
+    .frame-bar { background: #e8e8e8; padding: 4px 10px; font-size: 11px; color: #666; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; }
+    .frame-content { padding: 0; }
+
+    /* ---------- Blocs wireframe ---------- */
+    .wf { border: 2px dashed #aaa; margin: 6px 8px; padding: 12px 14px; border-radius: 4px; background: #fafafa; position: relative; }
+    .wf-label { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: .08em; }
+    .wf-desc { font-size: 12px; color: #999; margin-top: 4px; }
+    .wf-hero { background: #d0dfe8; border-color: #7a9aae; text-align: center; padding: 22px 14px; }
+    .wf-hero .wf-label { color: #3a6680; font-size: 13px; }
+    .wf-hero p { color: #5a7a8a; font-size: 12px; margin-top: 4px; }
+    .wf-row { display: flex; gap: 6px; padding: 6px 8px; }
+    .wf-row .wf { flex: 1; margin: 0; text-align: center; padding: 10px 6px; }
+    .wf-nav { background: #eee; border-color: #aaa; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+    .wf-nav .wf-label { font-size: 13px; color: #333; }
+    .wf-nav-dots { display: flex; gap: 6px; }
+    .wf-nav-dots span { width: 8px; height: 8px; border-radius: 50%; background: #bbb; }
+    .wf-nav-dots span:first-child { background: #0e7490; }
+    .wf-form-group { margin-bottom: 6px; }
+    .wf-input { border: 1px solid #ccc; background: #f5f5f5; padding: 7px 10px; border-radius: 3px; font-size: 11px; color: #999; display: block; width: 100%; }
+    .wf-btn { display: inline-block; background: #aaa; color: #fff; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 700; }
+    .wf-btn-accent { background: #d4a843; }
+    .wf-btn-outline { background: transparent; border: 2px solid #aaa; color: #666; }
+    .wf-grid { display: grid; gap: 6px; padding: 6px 8px; }
+    .wf-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .wf-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .wf-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .wf-table th, .wf-table td { border: 1px solid #ccc; padding: 5px 8px; text-align: left; }
+    .wf-table th { background: #ddd; font-weight: 700; }
+    .wf-footer { background: #333; color: #999; padding: 14px; font-size: 11px; }
+    .wf-cols { display: flex; gap: 8px; }
+    .wf-cols > div { flex: 1; }
+    .wf-cols > div .wf-label { margin-bottom: 4px; }
+    .wf-icon-row { display: flex; gap: 6px; }
+    .wf-icon { width: 32px; height: 32px; border-radius: 6px; background: #ddd; display: grid; place-items: center; font-size: 16px; flex-shrink: 0; }
+    .wf-divider { border-top: 1px solid #ddd; margin: 4px 0; }
+    .wf-map { background: #e0e8d0; text-align: center; color: #7a8a6a; font-weight: 600; padding: 24px; border-radius: 4px; }
+    .wf-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 700; background: #e8f4f8; color: #0e7490; }
+    .wf-badge-accent { background: #fef3c7; color: #b45309; }
+    .wf-auth-tabs { display: flex; gap: 0; border-bottom: 2px solid #ddd; margin-bottom: 10px; }
+    .wf-auth-tab { padding: 6px 14px; font-size: 12px; font-weight: 700; color: #999; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+    .wf-auth-tab.active { color: #0e7490; border-bottom-color: #0e7490; }
+    .wf-404 { background: #222; color: #fff; text-align: center; padding: 40px 14px; }
+    .wf-404 h3 { font-size: 48px; margin-bottom: 8px; }
+    .wf-404 p { color: #aaa; font-size: 12px; margin-bottom: 14px; }
+
+    /* ---------- Annotations ---------- */
+    .annotations { flex: 0 0 240px; font-size: 12px; }
+    .annotation { margin-bottom: 10px; }
+    .annotation strong { display: block; color: #0e7490; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .annotation p { color: #555; line-height: 1.5; }
+    @media (max-width: 900px) {
+      .maquette-body { flex-direction: column; }
+      .annotations { flex: none; display: flex; gap: 14px; flex-wrap: wrap; }
+      .annotation { flex: 1; min-width: 160px; }
+    }
+
+    /* Impression */
+    @media print {
+      .maquette { page-break-inside: avoid; }
+      .page-frame { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Bidéyoo <span>— Maquettes / Wireframes</span></h1>
+  <p>Document de cadrage pour validation par le propriétaire. Toutes les pages, structure des sections, annotations fonctionnelles.</p>
+</header>
+
+<div class="toolbar no-print">
+  <span class="badge">8 pages</span>
+  <a href="index.html">← Retour au site</a>
+  <a href="javascript:window.print()">🖨 Imprimer / PDF</a>
+</div>
+
+<div class="container">
+
+  <!-- ============================================================ -->
+  <!-- 1. ACCUEIL -->
+  <!-- ============================================================ -->
+
+  <div class="maquette" id="accueil">
+    <div class="maquette-header">
+      <h2>1. Accueil <code>index.html</code></h2>
+      <div class="meta">Page principale · 7 sections</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Accueil</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav">
+            <span class="wf-label">🎨 Logo Bidéyoo</span>
+            <div class="wf-nav-dots"><span></span><span></span><span></span><span></span><span></span><span class="wf-btn-accent" style="width:auto;border-radius:4px;padding:3px 10px;font-size:11px;">Réserver</span></div>
+          </div>
+          <div class="wf wf-hero">
+            <div class="wf-label">Section 1 · Hero bannière</div>
+            <p>Titre principal + sous-titre + boutons CTA<br>+ badge « Laverie nouvelle génération — ouverte 7j/7 »<br>+ statistiques « 1 200+ clients · Note 4,8/5 »</p>
+          </div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">Section 2 · Comment ça marche</div>
+            <div class="wf-row">
+              <div class="wf"><span class="wf-badge">1</span><br><small>Réservez en ligne</small></div>
+              <div class="wf"><span class="wf-badge">2</span><br><small>Déposez votre linge</small></div>
+              <div class="wf"><span class="wf-badge">3</span><br><small>Récupérez, c'est fini</small></div>
+            </div>
+          </div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">Section 3 · Services (aperçu)</div>
+            <div class="wf-grid wf-grid-4">
+              <div class="wf">Icon<br><small>Lavage</small></div>
+              <div class="wf">Icon<br><small>Lav. + Séch.</small></div>
+              <div class="wf">Icon<br><small>Repassage</small></div>
+              <div class="wf wf-badge-accent">Icon<br><small>Express 24h</small></div>
+            </div>
+            <p style="font-size:11px;margin-top:4px;">→ Lien « Tous les services → services.html »</p>
+          </div>
+          <div class="wf">
+            <div class="wf-label">Section 4 · À propos (teaser)</div>
+            <div class="wf-row" style="align-items:center;">
+              <div class="wf" style="flex:2;"><p><small>Histoire de Bidéyoo, M. Akimakako, valeurs, engagement. Bouton « En savoir plus → »</small></p></div>
+              <div class="wf" style="flex:1;text-align:center;"><small>4,8/5 · 1 200+<br>24h · 7j/7</small></div>
+            </div>
+          </div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">Section 5 · Avis clients</div>
+            <div class="wf-grid wf-grid-3">
+              <div class="wf">⭐⭐⭐⭐⭐<br><small>« Témoignage »</small><br><small>— Mr gbadamassi A.</small></div>
+              <div class="wf">⭐⭐⭐⭐⭐<br><small>« Témoignage »</small><br><small>— Rovana AKOESSAN</small></div>
+              <div class="wf">⭐⭐⭐⭐½<br><small>« Témoignage »</small><br><small>— Jonathan SENOU.</small></div>
+            </div>
+          </div>
+          <div class="wf wf-hero" style="background:#c8cdd4;padding:16px 14px;">
+            <div class="wf-label" style="color:#333;">Section 6 · CTA final</div>
+            <p style="color:#555;">« Prêt à confier votre linge ? » + bouton « Réserver maintenant »</p>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">
+            Footer · Navigation · Contact · Horaires · © 2026 Bidéyoo
+          </div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>1 · Hero bannière</strong><p>Bloc plein écran dégradé bleu. Titre en blanc, CTA « Réserver » en orange/ambre, CTA secondaire « Découvrir nos services » en blanc encadré. Badge en haut.</p></div>
+        <div class="annotation"><strong>2 · Comment ça marche</strong><p>3 étapes numérotées en colonnes, icônes circulaires, texte court sous chaque étape. Ligne pointillée de connexion entre les étapes.</p></div>
+        <div class="annotation"><strong>3 · Services aperçu</strong><p>4 cartes (lavage, lav.+séch., repassage, express). La carte Express a une bordure accent doré. Lien « Tous les services → services.html ».</p></div>
+        <div class="annotation"><strong>4 · À propos teaser</strong><p>2 colonnes : texte à gauche, chiffres-clés à droite (fond bleu pâle). Lien « En savoir plus → a-propos.html ».</p></div>
+        <div class="annotation"><strong>5 · Avis clients</strong><p>3 cartes avec étoiles, témoignage, avatar initiales + nom. Layout responsive colonnes.</p></div>
+        <div class="annotation"><strong>6 · CTA + Footer</strong><p>Bandeau foncé avec CTA. Footer 4 colonnes : marque, navigation, contact, horaires + copyright.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>2. Services</h2>
+      <div class="meta">services.html · 3 sections</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Services</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div><div class="wf-nav-dots"><span></span><span></span><span></span><span></span><span></span></div></div>
+          <div class="wf-hero">
+            <div class="wf-label">En-tête</div>
+            <p>Nos services et tarifs — Toutes nos prestations de laverie</p>
+          </div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">Cartes de prestations (grille 3 colonnes × 2 lignes)</div>
+            <div class="wf-grid wf-grid-3">
+              <div class="wf">💧 Lavage standard<br><small>2 500 FCFA / 5 kg</small></div>
+              <div class="wf">💧 Lavage + séchage<br><small>3 500 FCFA / 5 kg</small></div>
+              <div class="wf">☀ Repassage<br><small>1 000 FCFA / pièce</small></div>
+              <div class="wf">⭐ Pressing & nettoyage à sec<br><small>3 000 FCFA / pièce</small></div>
+              <div class="wf wf-badge-accent">⚡ Express 24h<br><small>5 000 FCFA / 5 kg</small></div>
+              <div class="wf">👨‍👩‍👧‍👦 Forfait Famille<br><small>7 500 FCFA / 10 kg</small></div>
+            </div>
+            <p style="font-size:11px;margin-top:4px;">Chaque carte : icône + titre + description + liste de caractéristiques + prix + bouton « Réserver ce service → reservation.html?service=id »</p>
+          </div>
+          <div class="wf">
+            <div class="wf-label">Grille tarifaire</div>
+            <table class="wf-table">
+              <thead><tr><th>Prestation</th><th>Détail</th><th>Délai</th><th>Tarif</th></tr></thead>
+              <tbody>
+                <tr><td>Lavage standard</td><td>Lavage + séchage inclus</td><td>≈ 2 h</td><td>2 500 FCFA / 5 kg</td></tr>
+                <tr><td>Lavage + séchage</td><td>Cycle complet, pliage soigné</td><td>≈ 3 h</td><td>3 500 FCFA / 5 kg</td></tr>
+                <tr><td>Repassage</td><td>À la pièce ou au kilo</td><td>24 h</td><td>1 000 FCFA / pièce</td></tr>
+                <tr><td>Pressing</td><td>Costumes, robes, textiles fragiles</td><td>48 h</td><td>3 000 FCFA / pièce</td></tr>
+                <tr><td>Forfait Express</td><td>Lavage + séchage + repassage</td><td>24 h</td><td>5 000 FCFA / 5 kg</td></tr>
+                <tr><td>Forfait Famille</td><td>Jusqu'à 10 kg, repassage inclus</td><td>≈ 4 h</td><td>7 500 FCFA / 10 kg</td></tr>
+                <tr><td>Nettoyage à sec</td><td>Vestes, manteaux, tissus délicats</td><td>48 h</td><td>4 000 FCFA / pièce</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="wf wf-hero" style="background:#c8cdd4;padding:14px 14px;">
+            <div class="wf-label" style="color:#333;">CTA final</div>
+            <p style="color:#555;">Boutons « Réserver » + « Nous contacter »</p>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>En-tête section</strong><p>Fond bleu pâle avec titre + sous-titre. Lien « Réserver maintenant → » dans l'en-tête.</p></div>
+        <div class="annotation"><strong>Cartes de prestations</strong><p>Grille 2 colonnes (mobile) / 3 colonnes (desktop). Chaque carte : icône badge, badge durée, titre, description, liste de features (check), prix FCFA, bouton CTA « Réserver ce service ». La carte Express a une bordure doré + badge « Populaire ». Le bouton « Réserver » transmet le paramètre ?service=id vers la page Réservation.</p></div>
+        <div class="annotation"><strong>Grille tarifaire</strong><p>Tableau responsive avec en-tête bleu. 7 lignes. Ligne surlignée en fond gris clair. Note de bas de page : « Tarifs indicatifs — montants définitifs arrêtés avec le propriétaire ».</p></div>
+        <div class="annotation"><strong>CTA + Footer</strong><p>Même structure que la page d'accueil : bandeau CTA foncé, footer 4 colonnes.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>3. Réservation</h2>
+      <div class="meta">reservation.html · 4 étapes + récap + confirmation</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Réservation</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div><div class="wf-nav-dots"><span></span><span></span><span></span><span></span><span></span></div></div>
+          <div class="wf-hero"><div class="wf-label">En-tête — Réservez votre créneau</div></div>
+          <div style="display:flex;gap:8px;padding:6px 8px;">
+            <div style="flex:2;">
+              <div class="wf">
+                <div class="wf-label">1. Votre prestation</div>
+                <div class="wf-form-group"><span class="wf-input">Service : [select]</span></div>
+                <div class="wf-form-group"><span class="wf-input">Quantité : [nombre] kg</span></div>
+              </div>
+              <div class="wf">
+                <div class="wf-label">2. Date et créneau</div>
+                <div class="wf-form-group"><span class="wf-input">Date : [date picker]</span></div>
+                <div class="wf-form-group"><span class="wf-input">Créneau : [09:00 → 19:00]</span></div>
+              </div>
+              <div class="wf">
+                <div class="wf-label">3. Mode de récupération</div>
+                <p style="font-size:11px;color:#999;">○ Dépôt en boutique ○ Retrait à domicile [→ champ adresse]</p>
+              </div>
+              <div class="wf">
+                <div class="wf-label">4. Vos coordonnées</div>
+                <div class="wf-form-group"><span class="wf-input">Nom complet</span></div>
+                <div class="wf-form-group"><span class="wf-input">Téléphone</span></div>
+                <div class="wf-form-group"><span class="wf-input">Adresse e-mail</span></div>
+                <div class="wf-form-group"><span class="wf-input">Notes particulières (facultatif)</span></div>
+              </div>
+              <div style="padding:6px 8px;"><span class="wf-btn wf-btn-accent">Confirmer ma réservation</span> <span class="wf-btn wf-btn-outline">Réinitialiser</span></div>
+            </div>
+            <div style="flex:1;">
+              <div class="wf" style="background:#e8f4f8;border-color:#0e7490;border-style:dashed;">
+                <div class="wf-label">Récapitulatif (sticky)</div>
+                <table class="wf-table" style="font-size:10px;">
+                  <tr><td>Service</td><td style="text-align:right;">Forfait Express</td></tr>
+                  <tr><td>Quantité</td><td style="text-align:right;">3 kg</td></tr>
+                  <tr><td>Date</td><td style="text-align:right;">17 août 2026</td></tr>
+                  <tr><td>Créneau</td><td style="text-align:right;">14:00</td></tr>
+                  <tr><td>Récupération</td><td style="text-align:right;">Boutique</td></tr>
+                  <tr><td>Client</td><td style="text-align:right;">Aïcha M. · a@e.com</td></tr>
+                </table>
+                <div class="wf-divider"></div>
+                <p style="text-align:right;font-weight:700;font-size:13px;color:#0e7490;">Total: 15 000 FCFA</p>
+                <p style="font-size:9px;color:#999;margin-top:4px;">ℹ Paiement à la récupération</p>
+              </div>
+            </div>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>Formulaire (4 étapes)</strong><p>Colonnes de gauche : 4 cartes numérotées correspondant aux sections du formulaire. Chaque champ avec label + input. Sélecteur de service pré-remplissable via URL ?service=id.</p></div>
+        <div class="annotation"><strong>Récapitulatif sticky</strong><p>Colonne de droite, sticky au scroll. Affiche en temps réel : service, quantité, date, créneau, mode, client, total calculé. Fond bleu pâle, bordure pointillée.</p></div>
+        <div class="annotation"><strong>Validation</strong><p>Champs obligatoires marqués *. Validation JavaScript en temps réel (classes is-valid / is-invalid Bootstrap). Toast d'erreur si soumission invalide.</p></div>
+        <div class="annotation"><strong>Confirmation</strong><p>Après soumission, le formulaire est masqué et un panneau de confirmation prend sa place : ✔ Grande coche, nom du client, référence unique (BDY-XXXX), récap complet, bouton « Nouvelle réservation ».</p></div>
+        <div class="annotation"><strong>Stockage</strong><p>La réservation est sauvegardée en localStorage sous bideyoo_bookings. Référence unique générée (BDY- + timestamp base36). Visible dans l'espace client.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>4. À propos</h2>
+      <div class="meta">a-propos.html · 4 sections</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — À propos</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div></div>
+          <div class="wf wf-hero" style="padding:18px 14px;">
+            <div class="wf-label">Hero sombre avec logo</div>
+            <p>« Une laverie qui vous rend votre temps »</p>
+          </div>
+          <div class="wf">
+            <div class="wf-label">Notre histoire — Le fondateur</div>
+            <div class="wf-row" style="align-items:center;">
+              <div class="wf" style="flex:1;"><p><small>Histoire de M. Akimakako, constat, genèse de Bidéyoo. Citation en bloc de gauche (bordure doré).</small></p></div>
+              <div class="wf" style="flex:1;text-align:center;"><p><small>Fond « bleu pâle » : Mission + 3 icônes (Qualité, Éco, Proximité)</small></p></div>
+            </div>
+          </div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">Nos valeurs</div>
+            <div class="wf-grid wf-grid-4">
+              <div class="wf">🏆<br><small>Qualité</small></div>
+              <div class="wf">⏱<br><small>Rapidité</small></div>
+              <div class="wf">👁<br><small>Transparence</small></div>
+              <div class="wf">❤<br><small>Proximité</small></div>
+            </div>
+          </div>
+          <div class="wf">
+            <div class="wf-label">Engagement qualité</div>
+            <div class="wf-row">
+              <div class="wf"><small>1. Produits contrôlés</small></div>
+              <div class="wf"><small>2. Satisfaction garantie</small></div>
+            </div>
+            <div class="wf-row">
+              <div class="wf"><small>3. Linge tracé</small></div>
+              <div class="wf"><small>4. Propreté irréprochable</small></div>
+            </div>
+          </div>
+          <div class="wf wf-hero" style="background:#c8cdd4;padding:14px;">
+            <div class="wf-label" style="color:#333;">CTA « Faites connaissance avec Bidéyoo »</div>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>Hero sombre</strong><p>Fond dégradé bleu foncé (comme l'accueil). Logo centré au-dessus. Titre + sous-titre en blanc.</p></div>
+        <div class="annotation"><strong>Histoire</strong><p>2 colonnes : récit fondateur à gauche avec citation style « blocquote » bordure doré. À droite : panneau bleu pâle avec mission + 3 icônes valeurs.</p></div>
+        <div class="annotation"><strong>Valeurs</strong><p>4 cartes icône + titre + description. Grille 2×2 responsive.</p></div>
+        <div class="annotation"><strong>Engagement</strong><p>Liste numérotée 2 colonnes. Icône 1-2-3-4 en bleu, titre gras, description en gris.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>5. Contact et localisation</h2>
+      <div class="meta">contact.html · 2 sections</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Contact</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div></div>
+          <div class="wf-hero"><div class="wf-label">En-tête — Localisation et contact</div></div>
+          <div class="wf" style="text-align:center;">
+            <div class="wf-label">4 cartes de coordonnées</div>
+            <div class="wf-grid wf-grid-4">
+              <div class="wf">📍<br><small>Adresse</small><br><small>Avenue de la Libération<br>Quartier Bé<br>Lomé — Togo</small></div>
+              <div class="wf">📞<br><small>Téléphone</small><br><small>+228 91 00 00 00<br>WhatsApp</small></div>
+              <div class="wf">✉<br><small>E-mail</small><br><small>contact@bideyoo.com</small></div>
+              <div class="wf">🕐<br><small>Horaires</small><br><small>Lun-Ven 07-20h<br>Sam 08-19h<br>Dim 09-18h</small></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;padding:6px 8px;">
+            <div class="wf" style="flex:1.5;">
+              <div class="wf-label">Carte interactive</div>
+              <div class="wf-map">🗺 OpenStreetMap — Lomé, Togo<br><small>(bbox 1.16–1.29° E, 6.07–6.19° N)</small></div>
+            </div>
+            <div class="wf" style="flex:1;">
+              <div class="wf-label">Formulaire de contact</div>
+              <div class="wf-form-group"><span class="wf-input">Nom complet *</span></div>
+              <div class="wf-form-group"><span class="wf-input">Adresse e-mail *</span></div>
+              <div class="wf-form-group"><span class="wf-input">Objet : [select]</span></div>
+              <div class="wf-form-group"><span class="wf-input">Message * [textarea 4 lignes]</span></div>
+              <span class="wf-btn">Envoyer le message</span>
+            </div>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>4 cartes de coordonnées</strong><p>Grille 4 colonnes : Adresse, Téléphone/WhatsApp, E-mail, Horaires. Chaque carte avec icône badge, titre, détails. Format responsive 2×2 mobile.</p></div>
+        <div class="annotation"><strong>Carte interactive</strong><p>Iframe OpenStreetMap centré sur Lomé (Quartier Bé). Coordonnées : 6.1319° N, 1.2228° E. Pas de clé API requise.</p></div>
+        <div class="annotation"><strong>Formulaire de contact</strong><p>4 champs : nom, e-mail, objet (select), message (textarea). Validation JS + toast de confirmation à l'envoi. Pas de back-end : le formulaire est une démo pédagogique.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>6. Espace client</h2>
+      <div class="meta">espace-client.html · Vue auth + Tableau de bord</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Espace client</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div></div>
+          <div class="wf-hero"><div class="wf-label">En-tête — Vos réservations, votre suivi</div></div>
+          <div class="wf">
+            <div class="wf-label">Vue authentification (non connecté)</div>
+            <div class="wf-auth-tabs"><span class="wf-auth-tab active">Connexion</span><span class="wf-auth-tab">Inscription</span></div>
+            <div class="wf-row">
+              <div class="wf" style="flex:1;">
+                <div class="wf-label">Onglet Connexion</div>
+                <div class="wf-form-group"><span class="wf-input">E-mail</span></div>
+                <div class="wf-form-group"><span class="wf-input">Mot de passe</span></div>
+                <span class="wf-btn">Se connecter</span>
+                <p style="font-size:10px;margin-top:4px;">Pas de compte ? → Inscription</p>
+              </div>
+              <div class="wf" style="flex:1;">
+                <div class="wf-label">Onglet Inscription</div>
+                <div class="wf-form-group"><span class="wf-input">Nom complet</span></div>
+                <div class="wf-form-group"><span class="wf-input">E-mail</span></div>
+                <div class="wf-form-group"><span class="wf-input">Téléphone</span></div>
+                <div class="wf-form-group"><span class="wf-input">Mot de passe</span></div>
+                <div class="wf-form-group"><span class="wf-input">Confirmer le mot de passe</span></div>
+                <span class="wf-btn">Créer mon compte</span>
+              </div>
+            </div>
+          </div>
+          <div class="wf-divider" style="margin:12px 8px;"></div>
+          <p style="text-align:center;font-size:12px;color:#999;padding:4px 8px;font-weight:700;">— OU — Vue tableau de bord (connecté) :</p>
+          <div class="wf">
+            <div class="wf-label">Tableau de bord (connecté)</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div><small>Bonjour, <strong>Aïcha</strong> 👋</small></div>
+              <span class="wf-btn wf-btn-outline" style="font-size:10px;padding:3px 8px;color:#dc2626;border-color:#dc2626;">Se déconnecter</span>
+            </div>
+            <div class="wf-grid wf-grid-4">
+              <div class="wf"><small>Réservations</small><br><strong>1</strong></div>
+              <div class="wf"><small>Total estimé</small><br><strong>15 000 FCFA</strong></div>
+              <div class="wf"><small>Prochain dépôt</small><br><strong>17/08 à 14:00</strong></div>
+              <div class="wf"><small>En cours</small><br><strong>1</strong></div>
+            </div>
+            <div class="wf-divider" style="margin:6px 0;"></div>
+            <div class="wf-label">Historique des réservations</div>
+            <table class="wf-table">
+              <thead><tr><th>Réf</th><th>Service</th><th>Date</th><th>Créneau</th><th>Total</th><th>Statut</th></tr></thead>
+              <tbody>
+                <tr><td>BDY-MSXC…</td><td>Express × 3 kg</td><td>17/08/2026</td><td>14:00</td><td>15 000 FCFA</td><td><span class="wf-badge-accent">En cours</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>Vue authentification</strong><p>En-tête avec onglets « Connexion / Inscription » (pills). L'onglet « Connexion » affiche e-mail + mot de passe. L'onglet « Inscription » affiche 5 champs. Lien entre les deux onglets.</p></div>
+        <div class="annotation"><strong>Tableau de bord</strong><p>4 mini-cards (réservations, total, prochain dépôt, en cours). Tableau historique avec colonne Statut : Confirmée (badge bleu), En cours (badge jaune), Terminée (badge gris). Bouton « Nouvelle réservation » si pas de réservation.</p></div>
+        <div class="annotation"><strong>Statuts</strong><p>Statut calculé automatiquement selon la date : Future → « Confirmée » (bleu), Aujourd'hui → « En cours » (jaune), Passée → « Terminée » (gris).</p></div>
+        <div class="annotation"><strong>Stockage</strong><p>Comptes : localStorage bideyoo_users [{name, email, phone, password}]. Session : bideyoo_session {email}. Réservations filtrées par e-mail de session.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>7. Mentions légales</h2>
+      <div class="meta">mentions-legales.html · 5 sections + sommaire</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — Mentions légales</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-nav"><div class="wf-label">Navbar</div></div>
+          <div class="wf-hero"><div class="wf-label">En-tête — Mentions légales</div></div>
+          <div style="display:flex;gap:8px;padding:6px 8px;">
+            <div style="flex:0.3;">
+              <div class="wf" style="padding:8px;">
+                <div class="wf-label">Sommaire (sticky)</div>
+                <p style="font-size:10px;color:#999;">→ Éditeur du site<br>→ Hébergement<br>→ Conditions générales<br>→ Confidentialité<br>→ Cookies</p>
+              </div>
+            </div>
+            <div style="flex:1;">
+              <div class="wf">
+                <div class="wf-label">Éditeur du site</div>
+                <p style="font-size:10px;color:#999;">Bidéyoo — M. Akimakako<br>Avenue de la Libération, Quartier Bé, Lomé — Togo<br>Tél : +228 91 00 00 00 · contact@bideyoo.com</p>
+              </div>
+              <div class="wf">
+                <div class="wf-label">Hébergement</div>
+                <p style="font-size:10px;color:#999;">Site statique hébergé sur Netlify<br>44 Montgomery Street, San Francisco, CA</p>
+              </div>
+              <div class="wf">
+                <div class="wf-label">Conditions générales d'utilisation</div>
+                <p style="font-size:10px;color:#999;">1. Objet · 2. Réservation · 3. Responsabilité · 4. Prix</p>
+              </div>
+              <div class="wf">
+                <div class="wf-label">Politique de confidentialité</div>
+                <p style="font-size:10px;color:#999;">Données stockées localement · Droits du client</p>
+              </div>
+              <div class="wf">
+                <div class="wf-label">Cookies</div>
+                <p style="font-size:10px;color:#999;">Pas de cookies · localStorage uniquement</p>
+              </div>
+            </div>
+          </div>
+          <div class="wf wf-footer" style="text-align:center;">Footer</div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>Sommaire</strong><p>Colonne sticky à gauche avec 5 liens-ancre vers chaque section. Visible tout au long du scroll.</p></div>
+        <div class="annotation"><strong>5 sections</strong><p>Chaque section dans une carte : Éditeur (coordonnées complètes), Hébergement (Netlify + justification), CGU (4 sous-articles), Confidentialité (données locales, droits), Cookies (absence).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="maquette" style="page-break-before:always;">
+    <div class="maquette-header">
+      <h2>8. Page 404 / erreurs</h2>
+      <div class="meta">404.html · Page standalone</div>
+    </div>
+    <div class="maquette-body">
+      <div class="page-frame">
+        <div class="frame-bar"><span>bidéyoo.com — 404</span><span>● ● ●</span></div>
+        <div class="frame-content">
+          <div class="wf wf-404">
+            <img src="assets/logo.svg" alt="" style="width:56px;opacity:.6;margin-bottom:8px;">
+            <h3 style="font-size:56px;font-weight:900;margin-bottom:8px;color:#67e8f9;">404</h3>
+            <div class="wf-label" style="color:#cbd5e1;font-size:14px;">Oups… ce linge a été égaré</div>
+            <p style="font-size:12px;color:#999;margin:10px auto;max-width:340px;">La page que vous cherchez n'existe pas ou a été déplacée. Pas de panique : notre équipe nettoie aussi les liens cassés.</p>
+            <div style="margin-top:12px;"><span class="wf-btn" style="margin-right:6px;">Retour à l'accueil</span><span class="wf-btn wf-btn-outline" style="border-color:#fff;color:#fff;">Réserver un créneau</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="annotations">
+        <div class="annotation"><strong>Page standalone</strong><p>Pas de navbar ni de footer. Fond noir avec dégradé radial bleu. Logo centré au-dessus, grand chiffre 404 en dégradé cyan/orange, sous-titre humoristique, 2 boutons CTA (accueil + réservation).</p></div>
+        <div class="annotation"><strong>robots: noindex</strong><p>Cette page ne doit pas être indexée par les moteurs de recherche (balise meta robots noindex).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTE FINALE -->
+
+  <div style="margin:40px auto;max-width:800px;background:#fff;border:2px solid #222;border-radius:8px;padding:24px 28px;">
+    <h3 style="font-size:16px;margin-bottom:8px;">📋 Points de validation avec le propriétaire</h3>
+    <ol style="font-size:13px;color:#444;padding-left:20px;line-height:1.8;">
+      <li>Le cahier des charges dans son ensemble ✅</li>
+      <li>Le logo et l'identité visuelle de Bidéyoo ✅</li>
+      <li><strong>Les maquettes de toutes les pages</strong> ← ce document</li>
+      <li>La facture détaillée de la prestation</li>
+      <li>La recette finale avant mise en production</li>
+    </ol>
+    <p style="font-size:12px;color:#888;margin-top:8px;">Document préparé par l'équipe projet — à valider par le propriétaire (représenté par le professeur) avant lancement du développement.</p>
+  </div>
+
+  <div style="text-align:center;padding:20px;color:#999;font-size:12px;">
+    © 2026 Bidéyoo — Maquettes wireframe — Projet pédagogique
+  </div>
+
+</body>
+</html>
