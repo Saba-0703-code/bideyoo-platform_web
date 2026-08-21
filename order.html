@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ma commande — Pressing Bidè</title>
+  <meta name="description" content="Panier, options de livraison, modes de paiement et confirmation de commande.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bdy-navbar" id="bdy-navbar" aria-label="Navigation principale"></nav>
+
+  <header class="bg-pb-light border-bottom border-light-subtle">
+    <div class="container py-5">
+      <span class="bdy-eyebrow">Mon panier</span>
+      <h1 class="bdy-section-title mb-2">Récapitulatif de commande</h1>
+      <p class="bdy-section-sub mb-0">Vérifiez vos services, choisissez vos options de livraison et de paiement.</p>
+    </div>
+  </header>
+
+  <section class="bdy-section">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <!-- Panier -->
+        <div class="col-lg-7">
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-bag text-pb me-2"></i>Services sélectionnés</h2>
+              <div id="cart-items">
+                <div class="text-center py-4" id="cart-empty">
+                  <i class="bi bi-bag-x display-4 text-muted"></i>
+                  <p class="text-muted mt-2">Votre panier est vide.</p>
+                  <a href="booking.html" class="btn btn-pb"><i class="bi bi-calendar2-plus me-2"></i>Réserver un service</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Options livraison -->
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-truck text-pb me-2"></i>Mode de retrait</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-check card p-3 h-100 border-2" style="cursor:pointer;" id="opt-pickup">
+                    <input class="form-check-input" type="radio" name="delivery" id="del-pickup" value="pickup" checked>
+                    <label class="form-check-label d-block" for="del-pickup">
+                      <i class="bi bi-shop fs-4 text-pb d-block mb-1"></i>
+                      <strong>Retrait en boutique</strong>
+                      <p class="text-muted small mb-0">Gratuit</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-check card p-3 h-100 border-2" style="cursor:pointer;" id="opt-delivery">
+                    <input class="form-check-input" type="radio" name="delivery" id="del-home" value="delivery">
+                    <label class="form-check-label d-block" for="del-home">
+                      <i class="bi bi-house-heart fs-4 text-pb-accent d-block mb-1"></i>
+                      <strong>Livraison à domicile</strong>
+                      <p class="text-muted small mb-0">+3 000 FCFA</p>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div id="address-field" class="mt-3 d-none">
+                <label for="order-address" class="form-label">Adresse de livraison <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="order-address" placeholder="Quartier, rue, repère…">
+              </div>
+            </div>
+          </div>
+
+          <!-- Paiement -->
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-credit-card text-pb me-2"></i>Mode de paiement</h2>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div class="form-check card p-3 h-100 border-2 text-center" style="cursor:pointer;">
+                    <input class="form-check-input" type="radio" name="payment" id="pay-momo" value="mobile_money" checked>
+                    <label class="form-check-label d-block" for="pay-momo">
+                      <i class="bi bi-phone fs-3 text-pb d-block mb-1"></i>
+                      <strong>Mobile Money</strong>
+                      <p class="text-muted small mb-0">T-Money / Flooz</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check card p-3 h-100 border-2 text-center" style="cursor:pointer;">
+                    <input class="form-check-input" type="radio" name="payment" id="pay-cash" value="cash">
+                    <label class="form-check-label d-block" for="pay-cash">
+                      <i class="bi bi-cash fs-3 text-pb-secondary d-block mb-1"></i>
+                      <strong>Espèces</strong>
+                      <p class="text-muted small mb-0">À la récupération</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-check card p-3 h-100 border-2 text-center" style="cursor:pointer;">
+                    <input class="form-check-input" type="radio" name="payment" id="pay-card" value="card">
+                    <label class="form-check-label d-block" for="pay-card">
+                      <i class="bi bi-credit-card-2-front fs-3 text-pb-accent d-block mb-1"></i>
+                      <strong>Carte bancaire</strong>
+                      <p class="text-muted small mb-0">Visa / Mastercard</p>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Récapitulatif -->
+        <div class="col-lg-5">
+          <div class="card stickytop" style="top: 90px;">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-receipt text-pb me-2"></i>Récapitulatif</h2>
+              <dl class="row mb-0 small" id="order-recap">
+                <dt class="col-5 text-muted fw-normal">Sous-total</dt>
+                <dd class="col-7 text-end fw-semibold" id="rc-subtotal">0 FCFA</dd>
+                <dt class="col-5 text-muted fw-normal">Livraison</dt>
+                <dd class="col-7 text-end fw-semibold" id="rc-delivery">Gratuit</dd>
+                <dt class="col-5 text-muted fw-normal">Points fidélité</dt>
+                <dd class="col-7 text-end fw-semibold" id="rc-points">+0 pts</dd>
+              </dl>
+              <hr>
+              <div class="d-flex justify-content-between align-items-baseline mb-3">
+                <span class="fw-bold">Total</span>
+                <span class="fs-3 fw-bold text-pb" id="rc-total">0 FCFA</span>
+              </div>
+              <button type="button" class="btn btn-pb w-100 btn-lg" id="btn-confirm-order">
+                <i class="bi bi-check2-circle me-2"></i>Confirmer la commande
+              </button>
+              <div class="recap-box p-3 mt-3 small">
+                <i class="bi bi-shield-lock text-pb me-1"></i>
+                En confirmant, vous acceptez nos <a href="legal.html" class="text-pb">conditions générales</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="col-lg-8 d-none" id="order-confirmed">
+          <div class="card text-center border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="display-4 text-success mb-3"><i class="bi bi-check2-circle"></i></div>
+              <h2 class="fw-bold mb-2">Commande confirmée !</h2>
+              <p class="text-muted mb-4">Votre commande <strong id="oc-ref"></strong> a été enregistrée.</p>
+              <div class="recap-box p-3 mb-4 text-start mx-auto" style="max-width: 460px;">
+                <dl class="row small mb-0">
+                  <dt class="col-5 text-muted fw-normal">Service</dt><dd class="col-7 text-end fw-semibold" id="oc-service">—</dd>
+                  <dt class="col-5 text-muted fw-normal">Total</dt><dd class="col-7 text-end fw-semibold" id="oc-total">—</dd>
+                  <dt class="col-5 text-muted fw-normal">Paiement</dt><dd class="col-7 text-end fw-semibold" id="oc-payment">—</dd>
+                </dl>
+              </div>
+              <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="dashboard.html" class="btn btn-pb btn-lg"><i class="bi bi-speedometer2 me-2"></i>Mon tableau de bord</a>
+                <a href="booking.html" class="btn btn-outline-pb btn-lg"><i class="bi bi-plus-circle me-2"></i>Nouvelle commande</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bdy-footer" id="bdy-footer"></footer>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" style="z-index:1080;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/services-data.js"></script>
+  <script src="js/order.js"></script>
+</body>
+</html>
