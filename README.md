@@ -21,6 +21,31 @@ et une **facture détaillée** de la prestation.
 | Client | M. Akimakako — entrepreneur |
 | Interlocuteur direct | Le professeur (représentant du propriétaire) |
 | Équipe | 4 membres |
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/Mr Tchassama.jpg" width="120px"><br>
+      <b>TCHASSAMA Noumane</b><br>
+        Scrum Master/ Chef de projet
+    </td>
+     <td align="center">
+      <img src="images/Mr SENOU.M.jpeg" width="120px"><br>
+      <b>Mawulomi SENOU</b><br>
+        Lead développeur Front-end
+    </td>
+    <td align="center">
+      <img src="images/franç.png" width="120px"><br>
+      <b>Françoise FOLLY-ADJON</b><br>
+        Développeuse Front-end/ Interactions
+    </td>
+    <td>
+      <img src="images/boss logie.png" width="120px"><br>
+      <b>Felicio SABA</b><br>
+      Développeur intégration & Déploiement 
+    </td>
+  </tr>
+</table>
 | Durée du projet | 17/08/2026 → 24/08/2026 à 23 h 59 |
 | Stack technique | Bootstrap 5.3, JavaScript (vanilla ES6+), HTML5, CSS3, Git / GitHub |
 | Gestion de projet | Trello |
