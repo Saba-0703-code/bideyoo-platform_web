@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — Pressing Bidè</title>
+  <meta name="description" content="Questions fréquentes sur les services de Pressing Bidè : réservation, tarifs, livraison, paiement et plus.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bdy-navbar" id="bdy-navbar" aria-label="Navigation principale"></nav>
+
+  <!-- ================= ENTÊTE ================= -->
+
+  <header class="bg-pb-light border-bottom border-light-subtle">
+    <div class="container py-5 text-center">
+      <span class="bdy-eyebrow">Centre d'aide</span>
+      <h1 class="bdy-section-title mb-2">Questions fréquentes</h1>
+      <p class="bdy-section-sub mx-auto mb-4">Trouvez rapidement les réponses à vos questions sur nos services.</p>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" class="form-control form-control-lg" id="faq-search" placeholder="Rechercher dans la FAQ…">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= FAQ ================= -->
+
+  <section class="bdy-section">
+    <div class="container" style="max-width: 860px;">
+
+      <!-- Catégorie : Réservation -->
+       
+      <div class="faq-category mb-4" data-category="reservation">
+        <h2 class="h5 fw-bold mb-3"><i class="bi bi-calendar2-check text-pb me-2"></i>Réservation</h2>
+        <div class="accordion faq-accordion" id="faq-reservation">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fr1">Comment réserver un créneau ?</button></h2><div id="fr1" class="accordion-collapse collapse show" data-bs-parent="#faq-reservation"><div class="accordion-body small text-muted">Rendez-vous sur la page <a href="booking.html" class="text-pb">Réservation</a>, choisissez votre service, votre date et votre créneau. La confirmation est immédiate par e-mail.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fr2">Puis-je modifier ou annuler ma réservation ?</button></h2><div id="fr2" class="accordion-collapse collapse" data-bs-parent="#faq-reservation"><div class="accordion-body small text-muted">Oui, vous pouvez modifier ou annuler votre réservation jusqu'à 2 heures avant le créneau réservé, depuis votre <a href="dashboard.html" class="text-pb">espace client</a>.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fr3">Faut-il un compte pour réserver ?</button></h2><div id="fr3" class="accordion-collapse collapse" data-bs-parent="#faq-reservation"><div class="accordion-body small text-muted">Non, vous pouvez réserver sans compte. Mais créer un compte vous permet de suivre vos commandes, accumuler des points de fidélité et accéder à votre historique.</div></div></div>
+        </div>
+      </div>
+
+      <!-- Catégorie : Services -->
+
+      <div class="faq-category mb-4" data-category="services">
+        <h2 class="h5 fw-bold mb-3"><i class="bi bi-stars text-pb me-2"></i>Services et tarifs</h2>
+        <div class="accordion faq-accordion" id="faq-services">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fs1">Quels services proposez-vous ?</button></h2><div id="fs1" class="accordion-collapse collapse" data-bs-parent="#faq-services"><div class="accordion-body small text-muted">Nous proposons : lavage classique, lavage premium, séchage, repassage, nettoyage à sec, pressing express (2h) et collecte/livraison à domicile. <a href="services.html" class="text-pb">Voir le catalogue complet →</a></div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fs2">Combien coûte un lavage ?</button></h2><div id="fs2" class="accordion-collapse collapse" data-bs-parent="#faq-services"><div class="accordion-body small text-muted">Le lavage classique commence à 2 500 FCFA pour 5 kg. Consultez notre <a href="pricing.html" class="text-pb">page tarifs</a> pour le détail complet et utilisez le calculateur de prix.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fs3">Quel est le délai de retour ?</button></h2><div id="fs3" class="accordion-collapse collapse" data-bs-parent="#faq-services"><div class="accordion-body small text-muted">Lavage classique : ≈ 2 h. Lavage premium : ≈ 3 h. Repassage : 24 h. Pressing : 48 h. Express : 2 h (pressing) ou 24 h (forfait complet).</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fs4">Comment est calculé le poids ?</button></h2><div id="fs4" class="accordion-collapse collapse" data-bs-parent="#faq-services"><div class="accordion-body small text-muted">Nous pesons votre linge à la réception en boutique. Le tarif est appliqué sur le poids exact. Vous pouvez estimer avec le <a href="pricing.html" class="text-pb">calculateur de prix</a>.</div></div></div>
+        </div>
+      </div>
+
+      <!-- Catégorie : Livraison -->
+
+      <div class="faq-category mb-4" data-category="livraison">
+        <h2 class="h5 fw-bold mb-3"><i class="bi bi-truck text-pb me-2"></i>Livraison et retrait</h2>
+        <div class="accordion faq-accordion" id="faq-livraison">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fl1">Proposez-vous la livraison à domicile ?</button></h2><div id="fl1" class="accordion-collapse collapse" data-bs-parent="#faq-livraison"><div class="accordion-body small text-muted">Oui ! Notre service de collecte et livraison à domicile est disponible pour 3 000 FCFA de supplément. Sélectionnez l'option lors de votre réservation.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fl2">Dans quelles zones livrez-vous ?</button></h2><div id="fl2" class="accordion-collapse collapse" data-bs-parent="#faq-livraison"><div class="accordion-body small text-muted">Pour l'instant, la livraison est disponible dans le Grand Lomé. D'autres zones seront ajoutées prochainement. Consultez nos <a href="locations.html" class="text-pb">agences</a> pour voir les zones couvertes.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fl3">Comment récupérer mon linge ?</button></h2><div id="fl3" class="accordion-collapse collapse" data-bs-parent="#faq-livraison"><div class="accordion-body small text-muted">Vous pouvez récupérer votre linge en boutique à l'horaire convenu, ou opter pour la livraison à domicile. Un SMS vous sera envoyé dès que votre linge sera prêt.</div></div></div>
+        </div>
+      </div>
+
+      <!-- Catégorie : Paiement -->
+      <div class="faq-category mb-4" data-category="paiement">
+        <h2 class="h5 fw-bold mb-3"><i class="bi bi-credit-card text-pb me-2"></i>Paiement</h2>
+        <div class="accordion faq-accordion" id="faq-paiement">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fp1">Quels moyens de paiement acceptez-vous ?</button></h2><div id="fp1" class="accordion-collapse collapse" data-bs-parent="#faq-paiement"><div class="accordion-body small text-muted">Nous acceptons Mobile Money (T-Money, Flooz), cartes bancaires et espèces. Le paiement s'effectue à la récupération du linge.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fp2">Puis-je payer en ligne ?</button></h2><div id="fp2" class="accordion-collapse collapse" data-bs-parent="#faq-paiement"><div class="accordion-body small text-muted">Le paiement en ligne via Mobile Money sera bientôt disponible. Pour l'instant, le paiement s'effectue en boutique ou à la livraison.</div></div></div>
+        </div>
+      </div>
+
+      <!-- Catégorie : Compte -->
+
+      <div class="faq-category" data-category="compte">
+        <h2 class="h5 fw-bold mb-3"><i class="bi bi-person text-pb me-2"></i>Mon compte</h2>
+        <div class="accordion faq-accordion" id="faq-compte">
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fc1">Comment créer un compte ?</button></h2><div id="fc1" class="accordion-collapse collapse" data-bs-parent="#faq-compte"><div class="accordion-body small text-muted">Rendez-vous sur la page <a href="register.html" class="text-pb">Inscription</a>, remplissez le formulaire avec votre nom, e-mail, téléphone et mot de passe. C'est gratuit et rapide.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fc2">Comment fonctionne le programme de fidélité ?</button></h2><div id="fc2" class="accordion-collapse collapse" data-bs-parent="#faq-compte"><div class="accordion-body small text-muted">Vous accumulez 1 point pour chaque 1 000 FCFA dépensés. Ces points ouvrent l'accès à des réductions exclusives et des services gratuits. Consultez votre <a href="dashboard.html" class="text-pb">tableau de bord</a>.</div></div></div>
+          <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fc3">J'ai oublié mon mot de passe</button></h2><div id="fc3" class="accordion-collapse collapse" data-bs-parent="#faq-compte"><div class="accordion-body small text-muted">Sur la page <a href="login.html" class="text-pb">Connexion</a>, cliquez sur « Mot de passe oublié » et suivez les instructions. Un lien de réinitialisation vous sera envoyé par e-mail.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+
+  <section class="bdy-section pt-0">
+    <div class="container">
+      <div class="bdy-cta p-5 text-center">
+        <h2 class="fw-bold mb-2">Vous n'avez pas trouvé votre réponse ?</h2>
+        <p class="mb-4 text-white-50">Contactez-nous directement, nous vous répondrons dans les 24 heures.</p>
+        <a href="contact.html" class="btn btn-pb btn-lg"><i class="bi bi-chat-dots me-2"></i>Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bdy-footer" id="bdy-footer"></footer>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" style="z-index:1080;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("faq-search");
+      if (!searchInput) return;
+      searchInput.addEventListener("input", () => {
+        const q = searchInput.value.toLowerCase().trim();
+        document.querySelectorAll(".faq-category").forEach(cat => {
+          const items = cat.querySelectorAll(".accordion-item");
+          let visible = 0;
+          items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            const show = !q || text.includes(q);
+            item.style.display = show ? "" : "none";
+            if (show) visible++;
+          });
+          cat.style.display = visible > 0 ? "" : "none";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
