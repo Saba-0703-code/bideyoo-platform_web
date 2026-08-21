@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espace client — Pressing Bidè</title>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top bdy-navbar" id="bdy-navbar" aria-label="Navigation principale"></nav>
+
+  <section class="bdy-section">
+    <div class="container text-center py-5">
+      <i class="bi bi-arrow-right-circle display-1 text-pb mb-3"></i>
+      <h1 class="h3 fw-bold mb-2">Redirection en cours…</h1>
+      <p class="text-muted mb-4">Espace client → <a href="login.html" class="text-pb">Connexion</a> ou <a href="dashboard.html" class="text-pb">Tableau de bord</a></p>
+    </div>
+  </section>
+
+  <footer class="bdy-footer" id="bdy-footer"></footer>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" style="z-index:1080;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Redirect based on auth status
+    (function() {
+      const session = JSON.parse(localStorage.getItem("pb_session") || "null");
+      if (session && Date.now() - session.lastActivity < 30 * 60 * 1000) {
+        window.location.href = "dashboard.html";
+      } else {
+        window.location.href = "login.html";
+      }
+    })();
+  </script>
+</body>
+</html>
