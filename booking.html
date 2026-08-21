@@ -1,0 +1,229 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Réserver — Pressing Bidè</title>
+  <meta name="description" content="Réservez votre créneau Pressing Bidè en ligne : choisissez votre service, point de vente, date et horaire.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg sticky-top bdy-navbar" id="bdy-navbar" aria-label="Navigation principale"></nav>
+
+  <header class="bg-pb-light border-bottom border-light-subtle">
+    <div class="container py-5">
+      <span class="bdy-eyebrow">Réservation en ligne</span>
+      <h1 class="bdy-section-title mb-2">Réservez votre créneau</h1>
+      <p class="bdy-section-sub mb-0">4 étapes simples pour confier votre linge.</p>
+    </div>
+  </header>
+
+  <section class="bdy-section">
+    <div class="container" style="max-width: 900px;">
+
+      <!-- Indicateur d'étapes -->
+
+      <div class="booking-step-indicator" id="step-indicator">
+        <div class="step-item active" data-step="1"><span class="step-num">1</span> Service</div>
+        <div class="step-connector"></div>
+        <div class="step-item" data-step="2"><span class="step-num">2</span> Agence</div>
+        <div class="step-connector"></div>
+        <div class="step-item" data-step="3"><span class="step-num">3</span> Date et détails</div>
+        <div class="step-connector"></div>
+        <div class="step-item" data-step="4"><span class="step-num">4</span> Confirmation</div>
+      </div>
+
+      <form id="booking-form" novalidate>
+
+        <!-- ===== ÉTAPE 1 : Service ===== -->
+
+        <div class="booking-step" id="step-1">
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-bucket text-pb me-2"></i>Choisissez votre service</h2>
+              <div class="row g-3" id="service-cards">
+
+                <!-- Injecté par JS -->
+                 
+              </div>
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-pb btn-lg" id="next-1">Suivant <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- ===== ÉTAPE 2 : Point de vente ===== -->
+
+        <div class="booking-step d-none" id="step-2">
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-geo-alt text-pb me-2"></i>Choisissez votre agence</h2>
+              <div class="row g-3" id="location-cards">
+
+                <!-- Injecté par JS -->
+
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary btn-lg" id="prev-2"><i class="bi bi-arrow-left me-1"></i> Retour</button>
+            <button type="button" class="btn btn-pb btn-lg" id="next-2">Suivant <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- ===== ÉTAPE 3 : Date et détails ===== -->
+
+        <div class="booking-step d-none" id="step-3">
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-calendar2-week text-pb me-2"></i>Date, créneau et détails</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="bk-date" class="form-label">Date <span class="text-danger">*</span></label>
+                  <input type="date" class="form-control" id="bk-date" required>
+                  <div class="invalid-feedback">Choisissez une date.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="bk-slot" class="form-label">Créneau horaire <span class="text-danger">*</span></label>
+                  <select class="form-select" id="bk-slot" required>
+                    <option value="" selected disabled>Choisir un créneau</option>
+                    <option value="07:00">07 h 00</option>
+                    <option value="08:00">08 h 00</option>
+                    <option value="09:00">09 h 00</option>
+                    <option value="10:00">10 h 00</option>
+                    <option value="11:00">11 h 00</option>
+                    <option value="12:00">12 h 00</option>
+                    <option value="13:00">13 h 00</option>
+                    <option value="14:00">14 h 00</option>
+                    <option value="15:00">15 h 00</option>
+                    <option value="16:00">16 h 00</option>
+                    <option value="17:00">17 h 00</option>
+                    <option value="18:00">18 h 00</option>
+                    <option value="19:00">19 h 00</option>
+                  </select>
+                  <div class="invalid-feedback">Choisissez un créneau.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="bk-weight" class="form-label">Poids estimé (kg) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="bk-weight" value="5" min="1" max="100" required>
+                  <div class="invalid-feedback">Poids requis (1-100 kg).</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="bk-type" class="form-label">Type de textile</label>
+                  <select class="form-select" id="bk-type">
+                    <option value="mixte">Mixte (vêtements courants)</option>
+                    <option value="linge">Linge de maison</option>
+                    <option value="costume">Costumes / robes</option>
+                    <option value="delicat">Textiles délicats</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="bk-notes" class="form-label">Notes particulières <span class="text-muted fw-normal">(facultatif)</span></label>
+                  <textarea class="form-control" id="bk-notes" rows="2" placeholder="Allergie, taches spéciales, consignes…"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coordonnées client -->
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-person-vcard text-pb me-2"></i>Vos coordonnées</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="bk-name" class="form-label">Nom complet <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="bk-name" autocomplete="name" required>
+                  <div class="invalid-feedback">Nom requis.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="bk-phone" class="form-label">Téléphone <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="bk-phone" autocomplete="tel" required>
+                  <div class="invalid-feedback">Numéro invalide.</div>
+                </div>
+                <div class="col-12">
+                  <label for="bk-email" class="form-label">E-mail <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="bk-email" autocomplete="email" required>
+                  <div class="invalid-feedback">E-mail invalide.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary btn-lg" id="prev-3"><i class="bi bi-arrow-left me-1"></i> Retour</button>
+            <button type="button" class="btn btn-pb btn-lg" id="next-3">Récapituler <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- ===== ÉTAPE 4 : Confirmation ===== -->
+
+        <div class="booking-step d-none" id="step-4">
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 fw-bold mb-3"><i class="bi bi-receipt text-pb me-2"></i>Récapitulatif</h2>
+              <div class="row">
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-5 text-muted fw-normal">Service</dt><dd class="col-7 fw-semibold" id="bk-rc-service">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Agence</dt><dd class="col-7 fw-semibold" id="bk-rc-location">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Date</dt><dd class="col-7 fw-semibold" id="bk-rc-date">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Créneau</dt><dd class="col-7 fw-semibold" id="bk-rc-slot">—</dd>
+                  </dl>
+                </div>
+                <div class="col-md-6">
+                  <dl class="row small mb-0">
+                    <dt class="col-5 text-muted fw-normal">Poids</dt><dd class="col-7 fw-semibold" id="bk-rc-weight">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Type</dt><dd class="col-7 fw-semibold" id="bk-rc-type">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Client</dt><dd class="col-7 fw-semibold" id="bk-rc-client">—</dd>
+                    <dt class="col-5 text-muted fw-normal">Total estimé</dt><dd class="col-7 fw-bold text-pb" id="bk-rc-total">—</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="recap-box p-3 mt-3 small">
+                <i class="bi bi-info-circle-fill text-pb me-1"></i>
+                Le paiement s'effectue à la récupération. Le total sera confirmé à la pesée exacte.
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-secondary btn-lg" id="prev-4"><i class="bi bi-arrow-left me-1"></i> Modifier</button>
+            <button type="button" class="btn btn-pb btn-lg" id="btn-book"><i class="bi bi-check2-circle me-2"></i>Confirmer ma réservation</button>
+          </div>
+        </div>
+
+        <!-- ===== CONFIRMATION ===== -->
+
+        <div class="d-none" id="booking-confirmed">
+          <div class="card text-center border-0 shadow-sm">
+            <div class="card-body p-5">
+              <div class="display-4 text-success mb-3"><i class="bi bi-check2-circle"></i></div>
+              <h2 class="fw-bold mb-2">Réservation confirmée ! 🎉</h2>
+              <p class="text-muted mb-4">Référence : <strong id="bk-confirm-ref" class="text-pb"></strong></p>
+              <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="dashboard.html" class="btn btn-pb btn-lg"><i class="bi bi-speedometer2 me-2"></i>Mon tableau de bord</a>
+                <button type="button" class="btn btn-outline-pb btn-lg" id="bk-new"><i class="bi bi-plus-circle me-2"></i>Nouvelle réservation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <footer class="bdy-footer" id="bdy-footer"></footer>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container" style="z-index:1080;"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/services-data.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
