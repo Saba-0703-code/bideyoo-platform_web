@@ -1,4 +1,4 @@
-/* ==========================================================================
+ /* ==========================================================================
    Pressing Bidè — Espace administrateur
    Dashboard KPIs, gestion commandes, utilisateurs, rapports, export CSV
    ========================================================================== */
@@ -17,11 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="d-flex flex-column flex-sm-row gap-3">
           <a href="login.html" class="btn btn-pb btn-lg"><i class="bi bi-box-arrow-in-right me-2"></i>Se connecter</a>
           <a href="index.html" class="btn btn-outline-pb btn-lg"><i class="bi bi-house me-2"></i>Retour à l'accueil</a>
-        </div>
-        <div class="admin-hint mt-4" style="max-width:380px;">
-          <i class="bi bi-info-circle me-1"></i>
-          <strong>Accès admin :</strong> créez un compte avec<br>
-          <code>admin@pressingbide.com</code>
         </div>
       </div>`;
     return;

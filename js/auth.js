@@ -5,7 +5,28 @@
 
 "use strict";
 
+const DEFAULT_ADMIN_EMAIL = "admin@pressingbide.com";
+const DEFAULT_ADMIN_PASSWORD = "Admin@12345";
+
 document.addEventListener("DOMContentLoaded", () => {
+  const users = JSON.parse(localStorage.getItem("pb_users") || "[]");
+  const adminExists = users.some(user => user.email === DEFAULT_ADMIN_EMAIL);
+
+  if (!adminExists) {
+    users.push({
+      id: "admin_default",
+      name: "Administrateur",
+      email: DEFAULT_ADMIN_EMAIL,
+      phone: "",
+      password: pbHashPassword(DEFAULT_ADMIN_PASSWORD),
+      accountType: "professionnel",
+      role: "admin",
+      loyaltyPoints: 0,
+      createdAt: Date.now(),
+    });
+    localStorage.setItem("pb_users", JSON.stringify(users));
+  }
+
   /* ---------- Toggle mot de passe ---------- */
   const toggleBtn = document.getElementById("toggle-password");
   if (toggleBtn) {

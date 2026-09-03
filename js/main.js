@@ -86,14 +86,6 @@ function renderNavbar() {
     </li>`;
   }
 
-  // Lien "Admin" — toujours visible, redirige vers login si non connecté
-  const adminActive = currentFile === "admin.html";
-  const adminLink = `<li class="nav-item">
-    <a class="nav-link ${adminActive ? "active" : ""}" href="admin.html" title="Administration">
-      <i class="bi bi-shield-lock me-1"></i>Admin
-    </a>
-  </li>`;
-
   // Bouton compte
   let accountBtn;
   if (session) {
@@ -131,7 +123,6 @@ function renderNavbar() {
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
           ${links}
           ${ordersLink}
-          ${adminLink}
           <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
             <a class="btn btn-pb w-100 position-relative" href="order.html">
               <i class="bi bi-cart3 me-1"></i>Panier
@@ -148,17 +139,18 @@ function renderNavbar() {
       </div>
     </div>`;
 
-  // Logout handler
-  const logoutNav = document.getElementById("nav-logout");
-  if (logoutNav) {
-    logoutNav.addEventListener("click", (e) => {
-      e.preventDefault();
-      localStorage.removeItem("pb_session");
-      pbToast("Déconnexion réussie.");
-      setTimeout(() => { window.location.href = "index.html"; }, 800);
-    });
-  }
 }
+
+// Gérer la déconnexion même lorsque la navbar est injectée dynamiquement.
+document.addEventListener("click", (e) => {
+  const logoutLink = e.target.closest("#nav-logout");
+  if (!logoutLink) return;
+
+  e.preventDefault();
+  localStorage.removeItem("pb_session");
+  pbToast("Déconnexion réussie.");
+  setTimeout(() => { window.location.href = "index.html"; }, 800);
+});
 
 /* ---------- Footer ---------- */
 function renderFooter() {
